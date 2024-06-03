@@ -16,7 +16,7 @@ const Cards = ({ issues }: { issues: ResType }) => {
           key={issue.key}
           className='rounded-md shadow-md  p-4 grid gap-1 bg-[#e9ecef] 
           border-dashed border-2 border-slate-300
-          grow w-[25%]
+          grow min-w-[25%]
           '
         >
           <div className='flex justify-between gap-6 items-center'>
