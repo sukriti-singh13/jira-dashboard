@@ -45,7 +45,7 @@ const Cards = () => {
           </div>
           <p className='text-sm font-light text-slate-500'>{issue.summary}</p>
           <div className='flex justify-between gap-6 text-base'>
-            <span className='flex gap-1 font-base text-sm text-slate-500 items-center'>
+            <span className='flex gap-1 font-medium text-sm text-slate-500 items-center'>
               Status :
               <p
                 className={`
@@ -55,13 +55,13 @@ const Cards = () => {
                     ? 'text-green-500'
                     : issue.status.toLowerCase() === 'to do'
                     ? 'text-yellow-500'
-                    : 'text-red-500'
+                    : 'text-blue-500'
                 }`}
               >
                 {issue.status}
               </p>
             </span>
-            {issue.assignee && <h2>Asignee : {issue.assignee}</h2>}
+            {issue.assignee && <h2 className='text-base text-slate-500'>Asignee : {issue.assignee.split(' ')[0]}</h2>}
           </div>
         </div>
       ))}
