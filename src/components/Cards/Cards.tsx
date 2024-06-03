@@ -1,22 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Badge from '../Badge/Badge';
 import { JiraResType, ResType } from '../../global';
+import { jiraIssuesList } from '../../utils/fetchutils';
+import Loader from '../Loader/Loader';
 
-const Cards = ({ issues }: { issues: ResType }) => {
-  if (!issues)
-    return (
-      <p className='text-red-500 text-base text-center'>
-        Something went wrong!
-      </p>
-    );
+const Cards = () => {
+  const [issues, setIssues] = useState<[] | ResType>([]);
+  const [isFetching, setIsFetching] = useState(true);
+  const fetchData = async () => {
+    const res: ResType | [] = await jiraIssuesList();
+    console.log(res);
+    if (res.length) {
+      setIssues(res);
+      setIsFetching(false);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  if (isFetching) return <Loader />;
+
   return (
-    <>
+    <div className='flex flex-wrap  gap-5'>
       {issues.map((issue: JiraResType) => (
         <div
           key={issue.key}
           className='rounded-md shadow-md  p-4 grid gap-1 bg-[#e9ecef] 
           border-dashed border-2 border-slate-300
-          grow min-w-[25%]
+          grow min-w-[25%] max-w-[30%]
           '
         >
           <div className='flex justify-between gap-6 items-center'>
@@ -46,7 +57,7 @@ const Cards = ({ issues }: { issues: ResType }) => {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
