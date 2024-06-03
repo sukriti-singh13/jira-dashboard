@@ -10,13 +10,10 @@ const HEADERS = {
 };
 
 const jiraFetchWrapper = async (jql: string): Promise<any> => {
-  const response = await fetch(
-    `https://${jiraDomain}/rest/api/3/search?maxResults=100&jql=${jql}`,
-    {
-      method: 'GET',
-      headers: HEADERS,
-    }
-  );
+  const response = await fetch(`/rest/api/3/search?maxResults=100&jql=${jql}`, {
+    method: 'GET',
+    headers: HEADERS,
+  });
   return response.json();
 };
 export const jiraIssuesList = async (): Promise<ResType> => {

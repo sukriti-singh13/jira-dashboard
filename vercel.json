@@ -1,0 +1,7 @@
+{
+    "rewrites": [
+      {
+        "source": "/rest:path*",
+        "destination": "https://${jiraDomain}/rest:path*"
+      },
+  }
