@@ -11,7 +11,7 @@ const Cards = ({ issues }: { issues: ResType }) => {
     );
   return (
     <>
-      {[...issues, ...[...issues].splice(2)].map((issue: JiraResType) => (
+      {issues.map((issue: JiraResType) => (
         <div
           key={issue.key}
           className='rounded-md shadow-md  p-4 grid gap-1 bg-[#e9ecef] 
