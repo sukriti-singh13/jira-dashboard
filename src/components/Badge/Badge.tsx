@@ -6,7 +6,7 @@ const BADGE_COLOR_MAP = {
 const Badge = ({ type }: { type: 'Bug' | 'Task' }) => {
   return (
     <div
-      className='rounded-full font-normal  text-xs grid place-content-center px-3 py-[2px] text-white
+      className='bg-yellow-500 rounded-full font-normal  text-xs grid place-content-center px-3 py-[2px] text-white
       border border-solid 
       '
       style={{

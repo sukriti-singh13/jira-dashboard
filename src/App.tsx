@@ -1,14 +1,13 @@
 import React, { Suspense } from 'react';
 import './App.css';
-import Cards from './components/Cards/Cards';
+import Dashboard from './components/Dashboard/Dashboard';
 import Loader from './components/Loader/Loader';
 
 function App() {
   return (
-    <div className='grid gap-4 m-6'>
-      <h1 className='text-2xl font-semibold '>Todo App Issues </h1>
-      <Cards />
-    </div>
+    
+      <Dashboard />
+
   );
 }
 
