@@ -11,11 +11,13 @@ const Cards = ({ issues }: { issues: ResType }) => {
     );
   return (
     <>
-      {issues.map((issue: JiraResType) => (
+      {[...issues, ...[...issues].splice(2)].map((issue: JiraResType) => (
         <div
           key={issue.key}
           className='rounded-md shadow-md  p-4 grid gap-1 bg-[#e9ecef] 
-          border-dashed border-2 border-slate-300'
+          border-dashed border-2 border-slate-300
+          grow w-[25%]
+          '
         >
           <div className='flex justify-between gap-6 items-center'>
             {' '}
