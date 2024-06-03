@@ -6,13 +6,17 @@ const adminId = process.env.REACT_APP_ADMIN_ID;
 const HEADERS = {
   Authorization: `Basic ${btoa(`${adminId}:${jiraToken}`)}`,
   Accept: 'application/json',
+  'access-control-allow-origin': '*',
 };
 
 const jiraFetchWrapper = async (jql: string): Promise<any> => {
-  const response = await fetch(`/rest/api/3/search?maxResults=100&jql=${jql}`, {
-    method: 'GET',
-    headers: HEADERS,
-  });
+  const response = await fetch(
+    `/jira/rest/api/3/search?maxResults=100&jql=${jql}`,
+    {
+      method: 'GET',
+      headers: HEADERS,
+    }
+  );
   return response.json();
 };
 export const jiraIssuesList = async (): Promise<ResType> => {
