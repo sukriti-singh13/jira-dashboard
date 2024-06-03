@@ -1,7 +1,8 @@
 {
-    "rewrites": [
-      {
-        "source": "/rest:path*",
-        "destination": "https://${jiraDomain}/rest:path*"
-      },
-  }
+  "rewrites": [
+    {
+      "source": "/rest:path*",
+      "destination": "https://sukritisingh.atlassian.net/rest:path*"
+    }
+  ]
+}
