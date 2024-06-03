@@ -1,7 +1,6 @@
 import { ResType } from '../global';
 
 const jiraToken = process.env.REACT_APP_JIRA_API_TOKEN;
-const jiraDomain = process.env.REACT_APP_JIRA_DOMAIN;
 const adminId = process.env.REACT_APP_ADMIN_ID;
 
 const HEADERS = {

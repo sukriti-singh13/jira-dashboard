@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/rest:path*",
-      "destination": "https://sukritisingh.atlassian.net/rest:path*"
+      "source": "/rest",
+      "destination": "https://sukritisingh.atlassian.net/rest"
     }
   ]
 }
