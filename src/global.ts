@@ -7,3 +7,6 @@ export type JiraResType = {
 };
 
 export type ResType = JiraResType[];
+export type ErrorResponse ={
+  error: string;
+}

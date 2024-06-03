@@ -7,11 +7,19 @@ import Loader from '../Loader/Loader';
 const Cards = () => {
   const [issues, setIssues] = useState<[] | ResType>([]);
   const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState('');
   const fetchData = async () => {
-    const res: ResType | [] = await jiraIssuesList();
-    console.log(res);
-    if (res.length) {
-      setIssues(res);
+    try {
+      const res: ResType | { error: string } = await jiraIssuesList();
+      if ('error' in res) {
+        setError(res.error);
+      } else if (res.length) {
+        setIssues(res);
+      }
+    } catch (error) {
+      console.error('Unexpected error fetching Jira issues:', error);
+      setError('Unexpected error fetching Jira issues');
+    } finally {
       setIsFetching(false);
     }
   };
@@ -19,7 +27,7 @@ const Cards = () => {
     fetchData();
   }, []);
   if (isFetching) return <Loader />;
-
+  if (error) return <div className='text-red-500 text-xl grid place-content-center font-semibold'>{error}</div>;
   return (
     <div className='flex flex-wrap  gap-5'>
       {issues.map((issue: JiraResType) => (
@@ -27,7 +35,7 @@ const Cards = () => {
           key={issue.key}
           className='rounded-md shadow-md  p-4 grid gap-1 bg-[#e9ecef] 
           border-dashed border-2 border-slate-300
-          grow min-w-[25%] max-w-[30%]
+          grow min-w-[25%] md:max-w-[30%]
           '
         >
           <div className='flex justify-between gap-6 items-center'>
