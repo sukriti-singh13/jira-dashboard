@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ErrorResponse, ResType } from '../global';
 
 const jiraToken = process.env.REACT_APP_JIRA_API_TOKEN;
@@ -11,21 +12,16 @@ const HEADERS = {
 
 const jiraFetchWrapper = async (jql: string): Promise<any> => {
   try {
-    const response = await fetch(`/rest/api/3/search?maxResults=100&jql=${jql}`, {
-      method: 'GET',
-      headers: HEADERS,
-    });
-
-   
-    if (!response.ok) {
-      const errorBody = await response.json();
-      throw new Error(errorBody.errorMessages || `Error: ${response.status} ${response.statusText}`);
-    }
-
-    return await response.json();
+    const response = await axios(
+      `/rest/api/3/search?maxResults=100&jql=${jql}`,
+      {
+        headers: HEADERS,
+      }
+    );
+    return await response.data;
   } catch (error) {
     console.error('Failed to fetch Jira issues:', error);
-    throw error; 
+    throw error;
   }
 };
 
@@ -37,12 +33,14 @@ export const jiraIssuesList = async (): Promise<ResType | ErrorResponse> => {
       summary: issue.fields.summary,
       issueType: issue.fields.issuetype.name,
       status: issue.fields.status.name,
-      assignee: issue.fields.assignee ? issue.fields.assignee.displayName : null,
+      assignee: issue.fields.assignee
+        ? issue.fields.assignee.displayName
+        : null,
     }));
 
     return filteredIssues;
   } catch (error) {
     console.error('Failed to get Jira issues list:', error);
-    return { error: (error as Error).message }; 
+    return { error: (error as Error).message };
   }
 };
