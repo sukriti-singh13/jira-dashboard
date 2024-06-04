@@ -4,7 +4,7 @@
 This project is a dashboard that uses Jira's REST API and lists all issues for a specific project. 
 
 ## **Deployment**
-The application is deployed at: [**https://vercel.com/sukritisingh13s-projects/jira-dashboard**](#)
+The application is deployed at: [**https://jira-dashboard-one.vercel.app/**](#)
 
 ## **Setup and Installation**
 1. **Clone the repository:**
